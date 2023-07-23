@@ -1,5 +1,5 @@
 const express = require('express');
-const randomBytes = require('crypto');
+const crypto = require('crypto');
 const bodyParser = require('body-parser');
 
 const app = express();
@@ -11,12 +11,12 @@ app.get('/posts', (req, res) => {
 });
 
 app.post('/posts', (req, res) => {
-  const id = randomBytes(4).toString("hex");
+  const id = crypto.randomBytes(4).toString("hex");
   const { title } = req.body;
   posts[id] = {
     id, title
   }
-  res.send(201).send(posts[id]);
+  res.status(201).send(posts[id]);
 
 });
 
