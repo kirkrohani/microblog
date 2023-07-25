@@ -1,8 +1,12 @@
+import PostCreate from './PostCreate';
 import React from 'react';
 
 const App = () => {
   return (
-    <div>My Micro Blod App</div>
+    <div>
+      <h1>Create Post</h1>
+      <PostCreate />
+    </div>
   )
 }
 
