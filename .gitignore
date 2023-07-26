@@ -17,17 +17,25 @@ event-bus/node_modules
 event-bus/.pnp
 event-bus/.pnp.js
 
+query/node_modules
+query/.pnp
+query/.pnp.js
+
 # testing
 client/coverage
 posts//coverage
 comments/coverage
 event-bus/coverage
+query/coverage
+
 
 # production
 client/build
 posts/build
 comments/build
 event-bus/build
+query/build
+
 
 # misc
 .DS_Store
