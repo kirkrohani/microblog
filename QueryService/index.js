@@ -39,6 +39,6 @@ app.post("/events", (req, res) => {
 });
 
 app.listen(LISTENER_PORT, () => {
-  console.log('App - Query: listening on port 4002');
+  console.log('QUERY SERVICE: listening on port 4002');
 
 })

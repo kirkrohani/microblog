@@ -35,5 +35,5 @@ app.post('/events', (req, res) => {
 });
 
 app.listen(LISTENER_PORT, () => {
-  console.log('App - Event Bus: listening on port 4005');
+  console.log('EVENT BUS: listening on port 4005');
 })
