@@ -5,36 +5,43 @@ client/node_modules
 client/.pnp
 client/.pnp.js
 
-posts/node_modules
-posts/.pnp
-posts/.pnp.js
+PostsService/node_modules
+PostsService/.pnp
+PostsService/.pnp.js
 
-comments/node_modules
-comments/.pnp
-comments/.pnp.js
+CommentsService/node_modules
+CommentsService/.pnp
+CommentsService/.pnp.js
 
-event-bus/node_modules
-event-bus/.pnp
-event-bus/.pnp.js
+EventBus/node_modules
+EventBus/.pnp
+EventBus/.pnp.js
 
-query/node_modules
-query/.pnp
-query/.pnp.js
+QueryService/node_modules
+QueryService/.pnp
+QueryService/.pnp.js
+
+ModerationService/node_modules
+ModerationService/.pnp
+ModerationService/.pnp.js
 
 # testing
 client/coverage
-posts//coverage
-comments/coverage
-event-bus/coverage
-query/coverage
+PostsService//coverage
+CommentsService/coverage
+EventBus/coverage
+QueryService/coverage
+ModerationService/coverage
+
 
 
 # production
 client/build
-posts/build
-comments/build
-event-bus/build
-query/build
+PostsService/build
+CommentsService/build
+EventBus/build
+QueryService/build
+ModerationService/build
 
 
 # misc
