@@ -9,12 +9,13 @@ app.use(cors());
 const postsWithComments = {};
 
 app.get('/posts', (req, res) => {
+  res.send(postsWithComments);
 });
 
 
 app.post("/events", (req, res) => {
   console.log('Event Received by Query: ', req.body.type);
-    const { type, data } = req.body;
+  const { type, data } = req.body;
   if (type === "PostCreated") {
     const { id, title } = data;
     postsWithComments[id] = {
@@ -26,7 +27,7 @@ app.post("/events", (req, res) => {
 
   if (type === "CommentCreated") {
     const { id, content, postId } = data;
-    const post = postsWithComments[id];
+    const post = postsWithComments[postId];
     post.comments.push({ id, content });
   }
   res.send({});

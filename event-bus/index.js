@@ -13,7 +13,7 @@ const events = {};
 
 app.post('/events', (req, res) => {
   const event = req.body;
-
+  console.log('Event received by EVENT BUS - ', event);
   axios.post("http://localhost:4000/events", event).catch((error) =>
   {
     console.log('Error posting to localhost:4000/events');
