@@ -18,16 +18,16 @@ app.get('/posts/:id/comments', (req, res) => {
 
 app.post('/posts/:id/comments', async (req, res) => {
   const id = crypto.randomBytes(4).toString("hex");
-  const { content } = req.body;
+  const { comment } = req.body;
   const comments = commentsByPostId[req.params.id] || [];
-  comments.push({id, content});
+  comments.push({id, comment});
   commentsByPostId[req.params.id] = comments;
 
   await axios.post("http://localhost:4005/events", {
     type: "CommentCreated",
     data: {
       id,
-      content,
+      comment,
       postId: req.params.id
     }
   })

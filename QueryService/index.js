@@ -18,6 +18,8 @@ app.get('/posts', (req, res) => {
 app.post("/events", (req, res) => {
   console.log('Event Received by Query: ', req.body.type);
   const { type, data } = req.body;
+
+  // Add POST to data structure
   if (type === "PostCreated") {
     const { id, title } = data;
     postsWithComments[id] = {
@@ -27,10 +29,11 @@ app.post("/events", (req, res) => {
     };
    }
 
+  // Add COMMENT to data structure
   if (type === "CommentCreated") {
-    const { id, content, postId } = data;
+    const { id, comment, postId } = data;
     const post = postsWithComments[postId];
-    post.comments.push({ id, content });
+    post.comments.push({ id, comment });
   }
   res.send({});
 });
