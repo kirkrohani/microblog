@@ -31,9 +31,9 @@ app.post("/events", (req, res) => {
 
   // Add COMMENT to data structure
   if (type === "CommentCreated") {
-    const { id, comment, postId } = data;
+    const { id, comment, postId, status } = data;
     const post = postsWithComments[postId];
-    post.comments.push({ id, comment });
+    post.comments.push({ id, comment, status });
   }
   res.send({});
 });
