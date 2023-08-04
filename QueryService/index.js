@@ -16,7 +16,7 @@ app.get('/posts', (req, res) => {
 
 
 app.post("/events", (req, res) => {
-  console.log('Event Received by Query: ', req.body.type);
+  console.log('Event Received by Query Service: ', req.body.type);
   const { type, data } = req.body;
 
   // Add POST to data structure
