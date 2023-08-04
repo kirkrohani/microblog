@@ -16,7 +16,7 @@ app.get('/posts', (req, res) => {
 
 
 app.post("/events", (req, res) => {
-  console.log('Event Received by Query Service: ', req.body.type);
+  console.log('Event Received by <- Query Service: ', req.body.type);
   const { type, data } = req.body;
 
   // Add POST to data structure
@@ -35,6 +35,17 @@ app.post("/events", (req, res) => {
     const post = postsWithComments[postId];
     post.comments.push({ id, comment, status });
   }
+
+  // Update COMMENT in data structure
+  if (type === "CommentUpdated") {
+    const { postId, id, status, comment } = data;
+    const comments = postsWithComments[postId].comments;
+    const updatedComment = comments.find(comment => comment.id === id);
+    updatedComment.status = status;
+    updatedComment.comment = comment;
+  }
+
+
   res.send({});
 });
 

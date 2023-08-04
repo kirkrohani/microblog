@@ -41,7 +41,7 @@ app.post('/posts/:id/comments', async (req, res) => {
 });
 
 app.post("/events", async (req, res) => {
-  console.log('Event Received by Comments: ', req.body);
+  console.log('Event Received by <- Comments Service: ', req.body);
   const { type, data } = req.body;
   const { id, postId, status } = data;
 
@@ -51,12 +51,13 @@ app.post("/events", async (req, res) => {
     comment.status = status;
   
 
+    console.log('Comments Service -> sending out Comment Updated Event');
     //Send newly updated comment to EVENT BUS
     await axios.post("http://localhost:4005/events", {
       type: "CommentUpdated",
       data: {
         id,
-        comment,
+        comment: comment.comment,
         postId: postId,
         status: status
       }
