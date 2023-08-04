@@ -25,10 +25,14 @@ app.post("/events", async (req, res) => {
     }
 
     //Send updated comment to Comment Service
-    await axios.post("http://localhost:4005/events/comment-moderated", {
-      type: "CommentModerated",
-      data
-    });
+    await axios.post("http://localhost:4005/events/comment-moderated",
+      {
+        type: "CommentModerated",
+        data
+      })
+      .catch((error) => {
+        console.log('ERROR posting moderated comment to Events Service: ', error);
+      });
   }
   res.send({});
 });
