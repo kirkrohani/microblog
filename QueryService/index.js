@@ -10,15 +10,7 @@ app.use(cors());
 
 const postsWithComments = {};
 
-app.get('/posts', (req, res) => {
-  res.send(postsWithComments);
-});
-
-
-app.post("/events", (req, res) => {
-  console.log('Event Received by <- Query Service: ', req.body.type);
-  const { type, data } = req.body;
-
+const handleEvent = (type, data) => {
   // Add POST to data structure
   if (type === "PostCreated") {
     const { id, title } = data;
@@ -45,11 +37,30 @@ app.post("/events", (req, res) => {
     updatedComment.comment = comment;
   }
 
+}
+
+app.get('/posts', (req, res) => {
+  res.send(postsWithComments);
+});
+
+app.post("/events", (req, res) => {
+  console.log('Event Received by <- Query Service: ', req.body.type);
+  const { type, data } = req.body;
+
+  handleEvent(type, data);
 
   res.send({});
 });
 
-app.listen(LISTENER_PORT, () => {
+app.listen(LISTENER_PORT, async () => {
   console.log('QUERY SERVICE: listening on port 4002');
+
+  //When the Query Service starts
+  const res = await axios.get("http://localhost:4005/events");
+
+  for (let event of res.data) {
+    console.log('initial processing of event: ', event.type);
+    handleEvent(event.type, event.data);
+  }
 
 })
