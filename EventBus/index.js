@@ -15,13 +15,14 @@ const QUERY_SERVICE_URL = "http://localhost:4002/events";
 const MODERATION_SERVICE_URL = "http://localhost:4003/events";
 
 
-const events = {};
+const events = [];
 
 
 
 app.post('/events', (req, res) => {
   const event = req.body;
   console.log('Event received by EVENT BUS - ', event);
+  events.push(event);
 
   //Send event to POSTS SERVICE
   axios.post(POSTS_SERVICE_URL, event)
@@ -65,6 +66,12 @@ app.post('/events/comment-moderated', (req, res) => {
       console.log('Error posting to localhost:4001/events');
     });
 });
+
+
+app.get("/events", (req, res) => {
+  res.send(events);
+})
+
 
 app.listen(LISTENER_PORT, () => {
   console.log('EVENT BUS: listening on port 4005');
