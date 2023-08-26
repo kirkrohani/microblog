@@ -27,6 +27,7 @@ app.post('/posts/:id/comments', async (req, res) => {
   });
   commentsByPostId[req.params.id] = comments;
 
+  console.log('Creating new Comment and sending to Event Bus: ', id, comment);
   //Send newly created comment to EVENT BUS
   await axios.post("http://localhost:4005/events", {
     type: "CommentCreated",
@@ -73,4 +74,6 @@ app.post("/events", async (req, res) => {
 
 app.listen(LISTENER_PORT, () => {
   console.log('COMMENTS SERVICE: listening on port 4001');
+  console.log('____________________________________________');
+
 })

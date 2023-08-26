@@ -12,6 +12,7 @@ app.use(cors());
 const postsWithComments = {};
 
 const handleEvent = (type, data) => {
+  console.log('Adding event to data structure: ', data);
   // Add POST to data structure
   if (type === "PostCreated") {
     const { id, title } = data;
@@ -55,6 +56,7 @@ app.post("/events", (req, res) => {
 
 app.listen(LISTENER_PORT, async () => {
   console.log('QUERY SERVICE: listening on port 4002');
+  console.log('____________________________________________');
 
   //When the Query Service starts
   const res = await axios.get("http://localhost:4005/events");

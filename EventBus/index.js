@@ -24,6 +24,7 @@ app.post('/events', (req, res) => {
   console.log('Event received by EVENT BUS - ', event);
   events.push(event);
 
+  console.log('Sending Event to PostsService, CommentsService, QueryService and ModerationService');
   //Send event to POSTS SERVICE
   axios.post(POSTS_SERVICE_URL, event)
     .catch((error) =>
@@ -75,4 +76,5 @@ app.get("/events", (req, res) => {
 
 app.listen(LISTENER_PORT, () => {
   console.log('EVENT BUS: listening on port 4005');
+  console.log('____________________________________________');
 })

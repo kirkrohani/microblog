@@ -17,6 +17,7 @@ app.post("/events", async (req, res) => {
 
   // Moderate CREATED comment
   if (type === "CommentCreated") {
+    console.log('Moderating comment: ', data.comment);
     //Moderate Comment
     if (data.comment.toLowerCase().includes(filterWord)) {
       data.status = "rejected";
@@ -40,5 +41,6 @@ app.post("/events", async (req, res) => {
 
 app.listen(LISTENER_PORT, () => {
   console.log('MODERATION SERVICE: listening on port 4003');
+  console.log('____________________________________________');
 
 })

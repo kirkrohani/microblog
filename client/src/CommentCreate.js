@@ -7,6 +7,7 @@ const CommentCreate = ({ postId }) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+    console.log('New Comment created from front end: ', comment);
     await axios.post(`http://localhost:4001/posts/${postId}/comments`, {
       comment,
     });
